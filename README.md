@@ -2,7 +2,8 @@
 
 The official website for the **HSRW Submarine Team** — a student engineering group at Hochschule Rhein-Waal (Kleve, Germany) designing and building a human-powered submarine.
 
-**Live site:** [serene-babka-6a57a2.netlify.app](https://serene-babka-6a57a2.netlify.app)
+**Live site:** [[serene-babka-6a57a2.netlify.app](https://serene-babka-6a57a2.netlify.app)](https://hsrwsubmarine.netlify.app/)
+
 
 ---
 
