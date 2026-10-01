@@ -798,6 +798,96 @@
     .g-tab { padding: 9px 14px; font-size: 13px; }
   }
   @media (prefers-reduced-motion: reduce) { .g-card, .g-water, .g-gauge svg { animation: none !important; transition: none !important; } }
+
+  /* ---------- SUB BUILDER ---------- */
+  .g-stage { overflow: clip; }
+  .g-top[hidden], .g-fact[hidden], #gBuildPanel[hidden] { display: none; }
+  .b-wrap { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,1fr); gap: 24px; align-items: start; }
+  .b-left { position: sticky; top: 92px; display: flex; flex-direction: column; gap: 14px; }
+  .b-view { position: relative; border-radius: 18px; background: linear-gradient(180deg,#0e4b6b 0%,#0a3248 55%,#061f2d 100%); border: 1px solid rgba(255,255,255,0.12); overflow: hidden; }
+  .b-view svg { display: block; width: 100%; height: auto; }
+  .b-mini { display: none; }
+  .b-stats { display: flex; flex-direction: column; gap: 9px; }
+  .b-stat { display: grid; grid-template-columns: 92px 1fr 70px; align-items: center; gap: 10px; font-size: 14px; color: #dbe6ef; }
+  .b-bar { height: 12px; border-radius: 6px; background: rgba(255,255,255,0.1); overflow: hidden; }
+  .b-bar i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--blue), var(--cyan)); transition: width .5s ease; }
+  .b-val { display: flex; align-items: baseline; gap: 6px; justify-content: flex-end; }
+  .b-val b { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; color: #fff; }
+  .b-d { font-style: normal; font-size: 13px; font-weight: 700; opacity: 0; transition: opacity .4s; min-width: 24px; }
+  .b-d.show { opacity: 1; }
+  .b-d.up { color: #59e0b0; } .b-d.dn { color: #ff7a63; }
+  .b-meta { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .b-m { background: var(--teal); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 10px 12px; font-size: 12px; color: var(--text-dim); }
+  .b-m b { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 22px; color: #fff; line-height: 1.1; margin-top: 2px; }
+  .b-m.over b { color: #ff7a63; }
+  .b-budget { height: 5px; border-radius: 3px; background: rgba(255,255,255,0.12); margin-top: 6px; overflow: hidden; }
+  .b-budget i { display: block; height: 100%; background: var(--cyan); transition: width .5s; }
+  .b-m.over .b-budget i { background: #ff7a63; }
+  .b-syn { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #dbe6ef; }
+  .b-syn div { border-radius: 10px; padding: 8px 12px; background: rgba(89,224,176,0.12); border: 1px solid rgba(89,224,176,0.35); }
+  .b-syn div.neg { background: rgba(255,122,99,0.12); border-color: rgba(255,122,99,0.4); }
+  .b-syn div.none { background: transparent; border: 1px dashed rgba(255,255,255,0.2); color: var(--text-dim); }
+  .b-right { scroll-margin-top: 260px; }
+  .b-steps { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  .b-step { background: transparent; color: var(--text-dim); border: 1.5px solid rgba(255,255,255,0.2); border-radius: 999px; padding: 6px 12px; font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 600; cursor: pointer; }
+  .b-step.done { color: #fff; border-color: rgba(79,209,232,0.5); }
+  .b-step.on { background: var(--cyan); color: var(--navy-deep); border-color: var(--cyan); }
+  .b-title { font-size: clamp(30px, 4vw, 40px); text-transform: uppercase; color: #fff; }
+  .b-hint { color: var(--text-dim); font-size: 15px; margin: 6px 0 14px; }
+  .b-note { color: #f2c230; font-size: 14px; min-height: 20px; margin: -6px 0 8px; }
+  .b-glabel { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.05em; margin: 14px 0 8px; }
+  .b-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .b-grid.cols3 { grid-template-columns: 1fr 1fr 1fr; }
+  .b-opt { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; text-align: left; padding: 12px 14px; background: var(--teal); color: #fff; border: 2px solid rgba(255,255,255,0.14); border-radius: 16px; font-family: inherit; cursor: pointer; transition: border-color .15s, transform .15s, background .15s; }
+  .b-opt:hover { border-color: rgba(79,209,232,0.6); }
+  .b-opt:active { transform: scale(.98); }
+  .b-opt.on { border-color: var(--cyan); background: rgba(79,209,232,0.16); box-shadow: 0 0 0 3px rgba(79,209,232,0.35); }
+  .b-opt .b-ico { font-size: 30px; line-height: 1; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; }
+  .b-opt .b-n { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 21px; line-height: 1.1; }
+  .b-opt .b-ds { font-size: 13px; color: var(--text-dim); line-height: 1.35; }
+  .b-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+  .b-chip { font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: rgba(255,255,255,0.1); color: #dbe6ef; }
+  .b-chip.up { background: rgba(89,224,176,0.18); color: #7df0c4; }
+  .b-chip.dn { background: rgba(255,122,99,0.18); color: #ff9c8a; }
+  .b-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 18px; }
+  .b-nav .g-btn { padding: 13px 30px; font-size: 15px; }
+  .b-nav .g-btn:disabled { opacity: .35; cursor: default; transform: none; box-shadow: none; }
+  /* results */
+  .b-res { display: flex; flex-direction: column; gap: 18px; }
+  .b-rname { font-size: clamp(34px, 6vw, 56px); text-transform: uppercase; color: #fff; }
+  .b-rrank { color: var(--cyan); font-weight: 600; margin-top: -8px; }
+  .b-rgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+  .b-sum { display: flex; flex-wrap: wrap; gap: 8px; }
+  .b-sum span { font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2); color: #dbe6ef; }
+  .b-race { background: var(--teal); border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 16px; }
+  .b-race h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; text-transform: uppercase; color: #fff; }
+  .b-lane { position: relative; height: 120px; margin: 12px 0; border-radius: 14px; overflow: hidden; background: linear-gradient(180deg,#0e4b6b,#061f2d); border: 1px solid rgba(255,255,255,0.12); }
+  .b-gate { position: absolute; top: 0; bottom: 0; width: 6px; margin-left: -3px; background: repeating-linear-gradient(180deg, rgba(255,255,255,.35) 0 10px, transparent 10px 20px); opacity: .6; transition: background .2s, opacity .2s; }
+  .b-gate.hit { background: var(--cyan); opacity: 1; }
+  .b-racer { position: absolute; left: 0; top: 34px; width: 130px; will-change: transform; }
+  .b-racer svg { width: 100%; height: auto; display: block; }
+  .b-racerow { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .b-time { font-family: 'Barlow Condensed', sans-serif; font-size: 44px; color: #fff; line-height: 1; }
+  .b-verdict { color: var(--text-dim); font-size: 14px; margin-top: 4px; }
+  @media (max-width: 900px) {
+    .b-wrap { grid-template-columns: 1fr; gap: 14px; }
+    .b-left { display: contents; }
+    .b-view { order: 0; position: sticky; top: 74px; z-index: 4; box-shadow: 0 8px 16px rgba(3,15,28,.6); }
+    .b-view svg { max-height: 150px; }
+    .b-mini { display: block; padding: 5px 10px; font-size: 12px; font-weight: 600; color: #fff; background: rgba(3,15,28,.7); text-align: center; }
+    .b-right { order: 1; }
+    .b-stats { order: 2; } .b-meta { order: 3; } .b-syn { order: 4; }
+    .b-rgrid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .b-grid, .b-grid.cols3 { grid-template-columns: 1fr 1fr; }
+    .b-opt { padding: 10px; }
+    .b-opt .b-n { font-size: 18px; }
+    .b-meta { grid-template-columns: 1fr 1fr 1fr; }
+    .b-m { padding: 8px; }
+    .b-m b { font-size: 18px; }
+    .b-step { padding: 5px 9px; font-size: 11.5px; }
+  }
 </style>
 </head>
 <body>
@@ -880,17 +970,18 @@
   <div class="wrap">
     <span class="eyebrow">Play Along</span>
     <h2 class="section-title">Dive Into the Games</h2>
-    <p class="g-intro">Four quick games about submarines, sea life and the physics of diving. Pick one and see how deep you can go.</p>
+    <p class="g-intro">Five games about submarines, sea life and the physics of diving, including a sub builder where you design and race your own. Pick one and see how deep you can go.</p>
 
     <div class="g-tabs" role="tablist" aria-label="Choose a game">
       <button class="g-tab on" role="tab" aria-selected="true" data-g="match" type="button">🐋 Match it</button>
       <button class="g-tab" role="tab" aria-selected="false" data-g="quiz" type="button">🧭 Sub quiz</button>
       <button class="g-tab" role="tab" aria-selected="false" data-g="float" type="button">🫧 Sink or float</button>
       <button class="g-tab" role="tab" aria-selected="false" data-g="zones" type="button">🌊 Depth zones</button>
+      <button class="g-tab" role="tab" aria-selected="false" data-g="build" type="button">🛠️ Build a sub</button>
     </div>
 
     <div class="g-stage" id="gStage">
-      <div class="g-top">
+      <div class="g-top" id="gTop">
         <div class="g-stats" aria-live="polite">
           <span><i id="gLA" style="font-style:normal">Matched</i><b id="gVA">0/6</b></span>
           <span><i id="gLB" style="font-style:normal">Oops</i><b id="gVB">0</b></span>
@@ -912,6 +1003,7 @@
         <div class="g-col"><h3>Technology it inspired</h3><div class="g-col" id="gRight"></div></div>
       </div>
       <div id="gChoicePanel" hidden></div>
+      <div id="gBuildPanel" hidden></div>
 
       <div class="g-fact hint" id="gFact" aria-live="polite"></div>
 
@@ -1181,7 +1273,7 @@
   (function(){
     var $ = function(id){ return document.getElementById(id); };
     var stage = $('gStage'), startEl = $('gStart'), endEl = $('gEnd'), fact = $('gFact');
-    var ORDER = ['match', 'quiz', 'float', 'zones'];
+    var ORDER = ['match', 'quiz', 'float', 'zones', 'build'];
     var games = {}, active = null, idleTimer, endTimer;
 
     function shuffle(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
@@ -1232,7 +1324,7 @@
     }
     function resetIdle(){
       clearTimeout(idleTimer);
-      idleTimer = setTimeout(function(){ if (startEl.hidden && endEl.hidden) showStart(); }, 90000);
+      idleTimer = setTimeout(function(){ if (startEl.hidden && endEl.hidden) showStart(); }, (active && active.idle) ? active.idle : 90000);
     }
     function activate(id){
       active = games[id];
@@ -1241,6 +1333,8 @@
       });
       $('gMatchPanel').hidden = active.panel !== 'match';
       $('gChoicePanel').hidden = active.panel !== 'choice';
+      $('gBuildPanel').hidden = active.panel !== 'build';
+      $('gTop').hidden = active.panel === 'build'; fact.hidden = active.panel === 'build';
       showStart();
     }
 
@@ -1421,6 +1515,351 @@
         {q:'Giant tube worm', icon:'🪱', o:[{t:'Sunlight zone', s:'0–200 m', i:'☀️'}, {t:'Twilight zone', s:'200–1,000 m', i:'🌗'}, {t:'Midnight zone', s:'Below 1,000 m', i:'🌑'}], a:2, f:'Giant tube worms cluster around hot vents on the seafloor, where no sunlight reaches at all.'}
       ]
     });
+
+    
+    /* ---------- game 5: submarine builder ---------- */
+    games.build = (function(){
+      var panel = $('gBuildPanel'), BUDGET = 5000, sel, step, prev, ui = {}, uid = 0, noteTimer;
+      var LBL = {sp:'Speed', ag:'Agility', ef:'Efficiency', st:'Stability'};
+      var SIZEF = {S:0.72, M:1, L:1.35};
+      var PILOT_COL = {sprinter:'#ff6b57', endurance:'#4f9bff', precision:'#3ddc97', light:'#f2c230'};
+      function fmt(n){ return '€' + n.toLocaleString('en-US'); }
+
+      var HULLS = [
+        {id:'torpedo', name:'Torpedo', icon:'🚀', nick:'Torpedo', desc:'Long and slender. Slices through water but turns like a bus.', d:{sp:16, ag:-14, ef:6, st:4, cx:1, cost:1400}},
+        {id:'teardrop', name:'Teardrop', icon:'💧', nick:'Teardrop', desc:'Round nose, tapered tail. The smoothest flow, but tricky to build.', d:{sp:12, ag:-2, ef:14, st:2, cx:3, cost:2200}},
+        {id:'capsule', name:'Capsule', icon:'💊', nick:'Capsule', desc:'Simple and roomy. Cheap to build, but water does not love it.', d:{sp:-8, ag:2, ef:-6, st:10, cx:0, cost:800}},
+        {id:'boxfish', name:'Boxfish-style', icon:'🐡', nick:'Boxfish', desc:'Short and boxy, like the fish. Surprisingly slippery and very nimble.', d:{sp:-2, ag:16, ef:2, st:6, cx:2, cost:1600}}
+      ];
+      var PROPS = [
+        {id:'prop2', name:'2-blade propeller', icon:'🌀', desc:'Light and simple. Great for steady pedalling.', d:{sp:6, ag:0, ef:8, st:0, cx:0, cost:300}},
+        {id:'prop4', name:'4-blade propeller', icon:'🌪️', desc:'More bite for sprints, but more drag when cruising.', d:{sp:12, ag:2, ef:-8, st:0, cx:1, cost:600}},
+        {id:'ducted', name:'Ducted propeller', icon:'⭕', desc:'A ring around the blades. Efficient and safe around divers.', d:{sp:4, ag:4, ef:14, st:4, cx:2, cost:900}},
+        {id:'flap', name:'Flapping fin', icon:'🐟', desc:'A tail like a tuna. Agile and quiet, but low top speed.', d:{sp:-10, ag:18, ef:4, st:-4, cx:4, cost:1500}}
+      ];
+      var LAYOUTS = [
+        {id:'cross', name:'Cross tail (+)', icon:'➕', desc:'Classic. Rudders up and down, planes left and right. Predictable.', d:{sp:0, ag:4, ef:0, st:10, cx:1, cost:400}},
+        {id:'xtail', name:'X tail', icon:'✖️', desc:'Four fins at 45 degrees. Very responsive, but needs a smooth touch.', d:{sp:2, ag:10, ef:0, st:-4, cx:3, cost:700}},
+        {id:'bow', name:'Bow planes', icon:'🔼', desc:'Dive planes up front change depth fast. Rudder stays at the back.', d:{sp:-2, ag:8, ef:-2, st:2, cx:2, cost:600}},
+        {id:'mid', name:'Mid wings', icon:'🛩️', desc:'Wings near the middle give a very stable, forgiving ride.', d:{sp:-4, ag:2, ef:-2, st:14, cx:1, cost:500}}
+      ];
+      var FINS = [
+        {id:'S', name:'Small fins', icon:'S', desc:'Less drag, less grip in turns.', d:{sp:4, ag:-6, ef:4, st:-6, cx:0, cost:100}},
+        {id:'M', name:'Medium fins', icon:'M', desc:'A balanced middle ground.', d:{sp:0, ag:0, ef:0, st:0, cx:0, cost:200}},
+        {id:'L', name:'Large fins', icon:'L', desc:'Strong steering force, more drag.', d:{sp:-6, ag:10, ef:-5, st:6, cx:1, cost:350}}
+      ];
+      var RUDDERS = [
+        {id:'S', name:'Small rudder', icon:'S', desc:'Low drag, slow to turn.', d:{sp:3, ag:-8, ef:3, st:-4, cx:0, cost:60}},
+        {id:'M', name:'Medium rudder', icon:'M', desc:'A balanced middle ground.', d:{sp:0, ag:0, ef:0, st:0, cx:0, cost:120}},
+        {id:'L', name:'Large rudder', icon:'L', desc:'Sharp turns, a bit more drag.', d:{sp:-4, ag:12, ef:-3, st:4, cx:0, cost:220}}
+      ];
+      var BIOS = [
+        {id:'sharkskin', name:'Shark-skin coating', icon:'🦈', desc:'Tiny ridges guide water along the hull and cut drag.', d:{sp:6, ag:0, ef:8, st:0, cx:2, cost:700}},
+        {id:'tubercles', name:'Humpback fin edges', icon:'🐋', desc:'Bumpy fin edges keep water flowing even at sharp angles.', d:{sp:0, ag:10, ef:2, st:6, cx:2, cost:500}},
+        {id:'beak', name:'Kingfisher nose', icon:'🐦', desc:'A beak-shaped bow slips through water with less pressure build-up.', d:{sp:8, ag:0, ef:4, st:0, cx:1, cost:400}},
+        {id:'whiskers', name:'Seal-whisker sensors', icon:'🦭', desc:'Sensors feel the flow around the hull so the pilot reacts sooner.', d:{sp:0, ag:8, ef:0, st:8, cx:3, cost:900}}
+      ];
+      var PILOTS = [
+        {id:'sprinter', name:'The Sprinter', icon:'🏃', desc:'Explosive legs. Tires quickly.', d:{sp:10, ag:-2, ef:-8, st:-2, cx:0, cost:0}},
+        {id:'endurance', name:'The Endurance Cyclist', icon:'🚴', desc:'Steady power for the long haul.', d:{sp:2, ag:0, ef:12, st:2, cx:0, cost:0}},
+        {id:'precision', name:'The Precision Pilot', icon:'🎯', desc:'Calm hands. Great at tight gates.', d:{sp:0, ag:10, ef:2, st:6, cx:0, cost:0}},
+        {id:'light', name:'The Featherweight', icon:'🪶', desc:'Light and compact. Less to push through the water.', d:{sp:4, ag:4, ef:6, st:-6, cx:0, cost:0}}
+      ];
+      var STEPS = [
+        {short:'Hull', title:'Hull shape', hint:'The body of your sub decides how easily it slips through the water.', groups:[{key:'hull', list:HULLS}]},
+        {short:'Drive', title:'Propulsion', hint:'How does your pilot turn leg power into thrust?', groups:[{key:'prop', list:PROPS}]},
+        {short:'Layout', title:'Fin layout', hint:'Where the control surfaces sit changes how the sub steers and holds its depth.', groups:[{key:'layout', list:LAYOUTS}]},
+        {short:'Sizes', title:'Fin and rudder size', hint:'Bigger surfaces steer harder, but they also drag.', groups:[{key:'fin', label:'Fin size', list:FINS, cols:3}, {key:'rudder', label:'Rudder size', list:RUDDERS, cols:3}]},
+        {short:'Nature', title:'Nature-inspired upgrades', hint:'Pick up to two. Each adds cost and complexity.', groups:[{key:'bio', list:BIOS, multi:true}]},
+        {short:'Pilot', title:'Choose your pilot', hint:'Same sub, different driver. Strengths and weaknesses count.', groups:[{key:'pilot', list:PILOTS}]}
+      ];
+      function pick(list, id){ return list.filter(function(o){ return o.id === id; })[0]; }
+      function has(s, id){ return s.bio.indexOf(id) > -1; }
+
+      var SYN = [
+        {t:'Smooth flow: a teardrop body with a kingfisher nose.', d:{sp:5, ef:3}, w:function(s){ return s.hull === 'teardrop' && has(s, 'beak'); }},
+        {t:'The duct hides the capsule\'s blunt tail.', d:{ef:5}, w:function(s){ return s.hull === 'capsule' && s.prop === 'ducted'; }},
+        {t:'A fish-shaped body with a fish-style tail.', d:{ag:8}, w:function(s){ return s.hull === 'boxfish' && s.prop === 'flap'; }},
+        {t:'Sprint power meets a hungry propeller.', d:{sp:6}, w:function(s){ return s.pilot === 'sprinter' && s.prop === 'prop4'; }},
+        {t:'Steady legs and a light propeller make a perfect cruiser.', d:{ef:6}, w:function(s){ return s.pilot === 'endurance' && s.prop === 'prop2'; }},
+        {t:'Fine flow feedback for a calm pilot.', d:{ag:8, st:2}, w:function(s){ return s.pilot === 'precision' && has(s, 'whiskers'); }},
+        {t:'Bumpy edges let big fins turn sharply without stalling.', d:{ag:6}, w:function(s){ return s.fin === 'L' && has(s, 'tubercles'); }},
+        {t:'Shark skin works best on a smooth, long hull.', d:{ef:4}, w:function(s){ return has(s, 'sharkskin') && (s.hull === 'teardrop' || s.hull === 'torpedo'); }},
+        {t:'An X tail suits a calm pilot.', d:{ag:6, st:4}, w:function(s){ return s.layout === 'xtail' && s.pilot === 'precision'; }},
+        {t:'Wings and a flapping tail fight each other.', d:{ag:-6, st:-4}, neg:true, w:function(s){ return s.layout === 'mid' && s.prop === 'flap'; }},
+        {t:'A long hull needs a bigger rudder to turn.', d:{ag:-8}, neg:true, w:function(s){ return s.hull === 'torpedo' && s.rudder === 'S'; }},
+        {t:'An X tail gets twitchy with an explosive pilot.', d:{st:-6}, neg:true, w:function(s){ return s.layout === 'xtail' && s.pilot === 'sprinter'; }}
+      ];
+
+      function compute(s){
+        var parts = [pick(HULLS, s.hull), pick(PROPS, s.prop), pick(LAYOUTS, s.layout), pick(FINS, s.fin), pick(RUDDERS, s.rudder), pick(PILOTS, s.pilot)]
+          .concat(s.bio.map(function(id){ return pick(BIOS, id); }));
+        var t = {sp:40, ag:50, ef:50, st:50, cx:0, cost:0};
+        function add(d){ for (var k in d) t[k] += d[k]; }
+        parts.forEach(function(p){ add(p.d); });
+        var syn = SYN.filter(function(r){ return r.w(s); });
+        syn.forEach(function(r){ add(r.d); });
+        ['sp', 'ag', 'ef', 'st'].forEach(function(k){ t[k] = Math.max(5, Math.min(100, Math.round(t[k]))); });
+        t.syn = syn;
+        return t;
+      }
+      function cxLabel(c){ return c <= 5 ? 'Low' : c <= 10 ? 'Medium' : 'High'; }
+      function raceCalc(c){
+        var top = 1 + c.sp / 100 * 2.6, avg = top * (0.7 + 0.3 * c.ef / 100);
+        var pen = 6 * (0.3 + (100 - c.ag) / 100 * 0.7) + (c.st < 35 ? (35 - c.st) * 0.15 : 0);
+        return {top:top, time:100 / avg + pen};
+      }
+      function scoreCalc(c){
+        var over = Math.max(0, c.cost - BUDGET);
+        var s = 0.3 * c.sp + 0.25 * c.ag + 0.25 * c.ef + 0.2 * c.st - Math.max(0, c.cx - 9) * 1.5 - (over ? Math.min(15, Math.ceil(over / 200)) : 0);
+        return Math.max(0, Math.min(100, Math.round(s)));
+      }
+
+      /* ----- picture ----- */
+      var HS = {
+        torpedo:  {d:'M104 130 C150 106 210 104 270 104 L410 104 C470 104 520 114 540 130 C520 146 470 156 410 156 L270 156 C210 156 150 154 104 130 Z', nose:540, tail:104, top:104, sx:160, st:108, dome:400, bow:450, mid:300},
+        teardrop: {d:'M110 130 C190 92 290 76 380 76 C450 76 500 100 500 130 C500 160 450 184 380 184 C290 184 190 168 110 130 Z', nose:500, tail:110, top:76, sx:170, st:100, dome:360, bow:410, mid:285},
+        capsule:  {d:'M185 96 H445 C485 96 510 111 510 130 C510 149 485 164 445 164 H185 C145 164 120 149 120 130 C120 111 145 96 185 96 Z', nose:510, tail:120, top:96, sx:176, st:96, dome:400, bow:420, mid:295},
+        boxfish:  {d:'M215 78 H425 C462 78 484 100 484 130 C484 160 462 182 425 182 H215 C185 182 166 160 166 130 C166 100 185 78 215 78 Z', nose:484, tail:166, top:78, sx:216, st:78, dome:380, bow:394, mid:300}
+      };
+      function subSVG(s){
+        var n = ++uid, H = HS[s.hull], fs = SIZEF[s.fin], rs = SIZEF[s.rudder], col = PILOT_COL[s.pilot];
+        var FIN = '#1e6fd9', FIN2 = '#3b8fe8', LN = '#04101c', o = [], bumps = [];
+        function bio(id){ return s.bio.indexOf(id) > -1; }
+        function poly(pts, fill){ return '<polygon points="' + pts.map(function(p){ return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ') + '" fill="' + fill + '" stroke="' + LN + '" stroke-width="2" stroke-linejoin="round"/>'; }
+        function addBumps(a, b, k, r){ for (var i = 1; i <= k; i++) { var t = i / (k + 1); bumps.push('<circle cx="' + (a[0] + (b[0] - a[0]) * t).toFixed(1) + '" cy="' + (a[1] + (b[1] - a[1]) * t).toFixed(1) + '" r="' + r + '" fill="' + FIN2 + '" stroke="' + LN + '" stroke-width="1.5"/>'); } }
+        o.push('<svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Your submarine design">');
+        o.push('<defs><linearGradient id="hg' + n + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8eef8"/><stop offset=".45" stop-color="#8bbdd6"/><stop offset="1" stop-color="#2f6f93"/></linearGradient>');
+        o.push('<clipPath id="hc' + n + '"><path d="' + H.d + '"/></clipPath>');
+        o.push('<pattern id="sp' + n + '" width="10" height="8" patternUnits="userSpaceOnUse"><path d="M0 8 L5 1 L10 8" fill="none" stroke="#ffffff" stroke-width="1.4" opacity=".6"/></pattern></defs>');
+        o.push('<g fill="#ffffff" opacity=".12"><circle cx="560" cy="40" r="6"/><circle cx="580" cy="70" r="4"/><circle cx="548" cy="86" r="3"/><circle cx="70" cy="200" r="5"/><circle cx="92" cy="226" r="3"/></g>');
+        /* rudders (behind hull) */
+        var sx = H.sx, top = H.st, bot = 260 - H.st, twin = s.layout === 'cross' || s.layout === 'xtail';
+        function rudder(dir){
+          var y0 = dir < 0 ? top : bot;
+          function pts(x, r){ var h = 50 * r; return [[x + 50, y0 - dir * 10], [x + 18, y0 + dir * h], [x - 4, y0 + dir * h], [x - 14, y0 - dir * 10]]; }
+          if (s.layout === 'xtail') o.push(poly(pts(sx + 14, rs * 0.86), FIN2));
+          var p = pts(sx, rs); o.push(poly(p, FIN));
+          if (bio('tubercles')) addBumps(p[0], p[1], 3, 3.6);
+        }
+        rudder(-1); if (twin) rudder(1);
+        /* propulsion */
+        var tx = H.tail;
+        function blade(cx, cy, rx, ry, rot){ return '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + rx + '" ry="' + ry + '" fill="#f2c230" stroke="' + LN + '" stroke-width="1.8" transform="rotate(' + rot + ' ' + cx + ' ' + cy + ')"/>'; }
+        var hub = '<ellipse cx="' + (tx - 3) + '" cy="130" rx="9" ry="8" fill="#243b4d" stroke="' + LN + '" stroke-width="2"/>';
+        if (s.prop === 'prop2') o.push(blade(tx - 6, 106, 5.5, 23, 14) + blade(tx - 6, 154, 5.5, 23, 14) + hub);
+        else if (s.prop === 'prop4') o.push(blade(tx - 6, 104, 5.5, 25, 8) + blade(tx - 6, 156, 5.5, 25, 8) + blade(tx - 8, 118, 4.5, 13, -58) + blade(tx - 8, 142, 4.5, 13, 58) + hub);
+        else if (s.prop === 'ducted') {
+          o.push('<polygon points="' + (tx - 36) + ',96 ' + (tx + 6) + ',102 ' + (tx + 6) + ',158 ' + (tx - 36) + ',164" fill="#12394f" stroke="' + LN + '" stroke-width="2.4" stroke-linejoin="round"/>');
+          o.push(blade(tx - 16, 114, 4.5, 15, 10) + blade(tx - 16, 146, 4.5, 15, 10) + '<ellipse cx="' + (tx - 14) + '" cy="130" rx="6" ry="6" fill="#243b4d" stroke="' + LN + '" stroke-width="1.8"/>');
+          o.push('<ellipse cx="' + (tx - 36) + '" cy="130" rx="6" ry="34" fill="none" stroke="#7fd7e8" stroke-width="3"/>');
+        } else {
+          o.push('<path d="M' + tx + ' 130 C' + (tx - 22) + ' 112 ' + (tx - 50) + ' 90 ' + (tx - 62) + ' 66 C' + (tx - 48) + ' 112 ' + (tx - 48) + ' 148 ' + (tx - 62) + ' 194 C' + (tx - 50) + ' 170 ' + (tx - 22) + ' 148 ' + tx + ' 130 Z" fill="#f2c230" stroke="' + LN + '" stroke-width="2.4" stroke-linejoin="round"/>');
+        }
+        /* hull */
+        o.push('<path d="' + H.d + '" fill="url(#hg' + n + ')" stroke="' + LN + '" stroke-width="3" stroke-linejoin="round"/>');
+        o.push('<g clip-path="url(#hc' + n + ')"><rect x="0" y="136" width="640" height="7" fill="' + col + '"/>' + (bio('sharkskin') ? '<rect x="0" y="0" width="640" height="260" fill="url(#sp' + n + ')"/>' : '') + '</g>');
+        o.push('<path d="' + H.d + '" fill="none" stroke="' + LN + '" stroke-width="3" stroke-linejoin="round"/>');
+        /* planes */
+        function wedge(x, y, sz){ var p = [[x + 44, y], [x, y], [x - 20, y + 46 * sz], [x + 8, y + 44 * sz]]; o.push(poly(p, FIN2)); if (bio('tubercles')) addBumps(p[0], p[3], 3, 3.2); }
+        if (s.layout === 'cross') wedge(sx - 2, 132, fs);
+        else if (s.layout === 'xtail') wedge(sx + 4, 132, fs * 0.9);
+        else if (s.layout === 'bow') wedge(H.bow, 132, fs);
+        else wedge(H.mid, 132, fs * 1.2);
+        /* canopy + pilot */
+        var dx = H.dome, dy = H.top;
+        o.push('<circle cx="' + dx + '" cy="' + (dy - 6) + '" r="12" fill="' + col + '" stroke="' + LN + '" stroke-width="2"/>');
+        o.push('<rect x="' + (dx - 2) + '" y="' + (dy - 12) + '" width="13" height="6" rx="3" fill="#e8fbff" opacity=".9"/>');
+        o.push('<path d="M' + (dx - 30) + ' ' + (dy + 4) + ' C' + (dx - 30) + ' ' + (dy - 34) + ' ' + (dx + 30) + ' ' + (dy - 34) + ' ' + (dx + 30) + ' ' + (dy + 4) + ' Z" fill="#bfeaff" fill-opacity=".28" stroke="#e8fbff" stroke-width="2.2"/>');
+        /* bio extras */
+        if (s.hull === 'boxfish') o.push('<circle cx="448" cy="116" r="7" fill="#fff" stroke="' + LN + '" stroke-width="2"/><circle cx="450" cy="116" r="3.2" fill="' + LN + '"/>');
+        if (bio('beak')) o.push('<polygon points="' + (H.nose - 8) + ',116 ' + (H.nose + 54) + ',130 ' + (H.nose - 8) + ',144" fill="#f2c230" stroke="' + LN + '" stroke-width="2.4" stroke-linejoin="round"/>');
+        if (bio('whiskers')) {
+          var wx = H.nose - (bio('beak') ? 34 : 14);
+          [-1, 0, 1].forEach(function(k){
+            var ex = wx + 44, ey = 130 + k * 34;
+            o.push('<path d="M' + wx + ' ' + (130 + k * 8) + ' Q' + (wx + 24) + ' ' + (130 + k * 20) + ' ' + ex + ' ' + ey + '" fill="none" stroke="#e8fbff" stroke-width="2.2" stroke-linecap="round"/><circle cx="' + ex + '" cy="' + ey + '" r="3" fill="#59e0b0"/>');
+          });
+        }
+        o.push(bumps.join(''));
+        o.push('</svg>');
+        return o.join('');
+      }
+
+      /* ----- helpers ----- */
+      function statRows(box, rows){
+        ['sp', 'ag', 'ef', 'st'].forEach(function(k){
+          var r = el('div', 'b-stat'); r.appendChild(el('span', '', LBL[k]));
+          var bar = el('div', 'b-bar'), i = el('i'); bar.appendChild(i); r.appendChild(bar);
+          var v = el('span', 'b-val'), b = el('b', '', ''), em = el('em', 'b-d', ''); v.appendChild(b); v.appendChild(em); r.appendChild(v);
+          box.appendChild(r); rows[k] = {i:i, b:b, em:em};
+        });
+      }
+      function chips(d){
+        var out = [];
+        ['sp', 'ag', 'ef', 'st'].forEach(function(k){
+          if (d[k] >= 4) out.push(['up', (d[k] >= 10 ? '▲▲ ' : '▲ ') + LBL[k]]);
+          else if (d[k] <= -4) out.push(['dn', (d[k] <= -10 ? '▼▼ ' : '▼ ') + LBL[k]]);
+        });
+        if (d.cost) out.push(['', fmt(d.cost)]);
+        return out;
+      }
+
+      /* ----- builder screen ----- */
+      function begin(){
+        sel = {hull:'capsule', prop:'prop2', layout:'cross', fin:'M', rudder:'M', bio:[], pilot:'endurance'};
+        step = 0; prev = compute(sel); ui = {}; panel.innerHTML = '';
+        var wrap = el('div', 'b-wrap'), left = el('div', 'b-left'), right = el('div', 'b-right');
+        ui.view = el('div', 'b-view'); ui.svg = el('div'); ui.mini = el('div', 'b-mini'); ui.view.appendChild(ui.svg); ui.view.appendChild(ui.mini);
+        ui.stats = el('div', 'b-stats'); ui.rows = {}; statRows(ui.stats, ui.rows);
+        ui.meta = el('div', 'b-meta');
+        ui.mCost = el('div', 'b-m'); ui.mCx = el('div', 'b-m'); ui.mTime = el('div', 'b-m');
+        [ui.mCost, ui.mCx, ui.mTime].forEach(function(m){ ui.meta.appendChild(m); });
+        ui.syn = el('div', 'b-syn');
+        [ui.view, ui.stats, ui.meta, ui.syn].forEach(function(x){ left.appendChild(x); });
+        ui.steps = el('div', 'b-steps'); ui.title = el('h3', 'b-title'); ui.hint = el('p', 'b-hint'); ui.note = el('p', 'b-note');
+        ui.opts = el('div'); ui.nav = el('div', 'b-nav');
+        ui.back = el('button', 'g-btn alt', 'Back'); ui.back.type = 'button';
+        ui.next = el('button', 'g-btn', 'Next'); ui.next.type = 'button';
+        ui.back.addEventListener('click', function(){ if (step > 0) { step--; renderStep(true); } });
+        ui.next.addEventListener('click', function(){ if (step < STEPS.length - 1) { step++; renderStep(true); } else results(); });
+        ui.nav.appendChild(ui.back); ui.nav.appendChild(ui.next);
+        [ui.steps, ui.title, ui.hint, ui.note, ui.opts, ui.nav].forEach(function(x){ right.appendChild(x); });
+        ui.right = right; wrap.appendChild(left); wrap.appendChild(right); panel.appendChild(wrap);
+        renderStep(false); refresh(false);
+      }
+      function refresh(showDelta){
+        var c = compute(sel);
+        ui.svg.innerHTML = subSVG(sel);
+        ['sp', 'ag', 'ef', 'st'].forEach(function(k){
+          var r = ui.rows[k]; r.i.style.width = c[k] + '%'; r.b.textContent = c[k];
+          if (showDelta) { var d = c[k] - prev[k]; if (d) { r.em.textContent = (d > 0 ? '+' : '−') + Math.abs(d); r.em.className = 'b-d show ' + (d > 0 ? 'up' : 'dn'); clearTimeout(r.t); r.t = setTimeout(function(){ r.em.classList.remove('show'); }, 1800); } }
+        });
+        var over = c.cost > BUDGET;
+        ui.mCost.className = 'b-m' + (over ? ' over' : '');
+        ui.mCost.innerHTML = '<span>Cost</span><b></b><div class="b-budget"><i></i></div>';
+        ui.mCost.querySelector('b').textContent = fmt(c.cost);
+        ui.mCost.querySelector('i').style.width = Math.min(100, c.cost / BUDGET * 100) + '%';
+        ui.mCx.innerHTML = '<span>Complexity</span><b></b>'; ui.mCx.querySelector('b').textContent = cxLabel(c.cx);
+        ui.mTime.innerHTML = '<span>Build time</span><b></b>'; ui.mTime.querySelector('b').textContent = '~' + (3 + c.cx) + ' weeks';
+        ui.mini.textContent = 'Speed ' + c.sp + ' · Agility ' + c.ag + ' · Eff. ' + c.ef + ' · Stab. ' + c.st + ' · ' + fmt(c.cost) + (over ? ' (over budget)' : '');
+        ui.syn.innerHTML = '';
+        if (!c.syn.length) ui.syn.appendChild(el('div', 'none', 'Match parts that work well together to unlock combo bonuses.'));
+        c.syn.slice(0, 4).forEach(function(r){ ui.syn.appendChild(el('div', r.neg ? 'neg' : '', (r.neg ? '⚠️ ' : '⚡ ') + r.t)); });
+        prev = c;
+      }
+      function note(msg){ ui.note.textContent = msg; clearTimeout(noteTimer); noteTimer = setTimeout(function(){ ui.note.textContent = ''; }, 2600); }
+      function syncOn(){
+        ui.opts.querySelectorAll('.b-opt').forEach(function(b){
+          var g = b._g, id = b._id, on = g.multi ? sel[g.key].indexOf(id) > -1 : sel[g.key] === id;
+          b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      }
+      function choose(g, o){
+        if (g.multi) {
+          var i = sel[g.key].indexOf(o.id);
+          if (i > -1) sel[g.key].splice(i, 1);
+          else if (sel[g.key].length >= 2) { note('Two upgrades max. Tap one to remove it first.'); return; }
+          else sel[g.key].push(o.id);
+        } else sel[g.key] = o.id;
+        syncOn(); refresh(true);
+      }
+      function renderStep(scroll){
+        var S = STEPS[step];
+        ui.steps.innerHTML = '';
+        STEPS.forEach(function(st, i){
+          var b = el('button', 'b-step' + (i === step ? ' on' : '') + (i < step ? ' done' : ''), (i + 1) + ' ' + st.short); b.type = 'button';
+          b.addEventListener('click', function(){ step = i; renderStep(true); }); ui.steps.appendChild(b);
+        });
+        ui.title.textContent = S.title; ui.hint.textContent = S.hint; ui.note.textContent = ''; ui.opts.innerHTML = '';
+        S.groups.forEach(function(g){
+          if (g.label) ui.opts.appendChild(el('h4', 'b-glabel', g.label));
+          var grid = el('div', 'b-grid' + (g.cols === 3 ? ' cols3' : ''));
+          g.list.forEach(function(o){
+            var b = el('button', 'b-opt'); b.type = 'button'; b._g = g; b._id = o.id;
+            var ic = el('span', 'b-ico', o.icon); ic.setAttribute('aria-hidden', 'true'); b.appendChild(ic);
+            b.appendChild(el('span', 'b-n', o.name)); b.appendChild(el('span', 'b-ds', o.desc));
+            var cw = el('span', 'b-chips'); chips(o.d).forEach(function(c){ cw.appendChild(el('span', 'b-chip ' + c[0], c[1])); }); b.appendChild(cw);
+            b.addEventListener('click', function(){ choose(g, o); });
+            grid.appendChild(b);
+          });
+          ui.opts.appendChild(grid);
+        });
+        ui.back.disabled = step === 0;
+        ui.next.textContent = step === STEPS.length - 1 ? 'Finish and race' : 'Next';
+        syncOn();
+        if (scroll && window.matchMedia && window.matchMedia('(max-width: 900px)').matches) ui.right.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+
+      /* ----- results + race ----- */
+      function results(){
+        var c = compute(sel), rc = raceCalc(c), score = scoreCalc(c), over = c.cost > BUDGET;
+        var best = [['sp', 'Rocket'], ['ag', 'Dancer'], ['ef', 'Cruiser'], ['st', 'Anchor']].reduce(function(a, b){ return c[b[0]] > c[a[0]] ? b : a; });
+        var name = 'The ' + pick(HULLS, sel.hull).nick + ' ' + best[1];
+        var tier = score >= 72 ? ['🏆', 'Podium contender'] : score >= 58 ? ['🧭', 'Solid builder'] : ['⚓', 'Promising prototype'];
+        panel.innerHTML = '';
+        var r = el('div', 'b-res');
+        r.appendChild(el('h3', 'b-rname', name));
+        r.appendChild(el('p', 'b-rrank', tier[0] + ' ' + tier[1] + ' · Team score ' + score + '/100'));
+        var vw = el('div', 'b-view'); vw.innerHTML = subSVG(sel); r.appendChild(vw);
+        var grid = el('div', 'b-rgrid'), sbox = el('div', 'b-stats'), rows = {}; statRows(sbox, rows);
+        ['sp', 'ag', 'ef', 'st'].forEach(function(k){ rows[k].i.style.width = '0%'; rows[k].b.textContent = c[k]; setTimeout(function(){ rows[k].i.style.width = c[k] + '%'; }, 60); });
+        var meta = el('div', 'b-meta');
+        var m1 = el('div', 'b-m' + (over ? ' over' : ''), 'Cost'); m1.appendChild(el('b', '', fmt(c.cost)));
+        var bd = el('div', 'b-budget'); var bi = el('i'); bi.style.width = Math.min(100, c.cost / BUDGET * 100) + '%'; bd.appendChild(bi); m1.appendChild(bd);
+        var m2 = el('div', 'b-m', 'Complexity'); m2.appendChild(el('b', '', cxLabel(c.cx)));
+        var m3 = el('div', 'b-m', 'Build time'); m3.appendChild(el('b', '', '~' + (3 + c.cx) + ' weeks'));
+        meta.appendChild(m1); meta.appendChild(m2); meta.appendChild(m3);
+        var colR = el('div'); colR.style.cssText = 'display:flex;flex-direction:column;gap:12px';
+        colR.appendChild(meta);
+        colR.appendChild(el('p', 'b-hint', over ? 'Over budget by ' + fmt(c.cost - BUDGET) + ' (budget ' + fmt(BUDGET) + '). That cost you points.' : 'Under budget: ' + fmt(BUDGET - c.cost) + ' left of ' + fmt(BUDGET) + '.'));
+        var syn = el('div', 'b-syn');
+        if (c.syn.length) c.syn.forEach(function(x){ syn.appendChild(el('div', x.neg ? 'neg' : '', (x.neg ? '⚠️ ' : '⚡ ') + x.t)); });
+        else syn.appendChild(el('div', 'none', 'No combo bonuses this time. Try matching parts that work together.'));
+        colR.appendChild(syn);
+        var colL = el('div'); colL.appendChild(sbox);
+        grid.appendChild(colL); grid.appendChild(colR); r.appendChild(grid);
+        var sum = el('div', 'b-sum');
+        [pick(HULLS, sel.hull).name, pick(PROPS, sel.prop).name, pick(LAYOUTS, sel.layout).name, pick(FINS, sel.fin).name + ' fins', pick(RUDDERS, sel.rudder).name.toLowerCase()].concat(sel.bio.map(function(id){ return pick(BIOS, id).name; })).concat([pick(PILOTS, sel.pilot).name]).forEach(function(t){ sum.appendChild(el('span', '', t)); });
+        r.appendChild(sum);
+
+        var race = el('div', 'b-race');
+        race.appendChild(el('h4', '', 'Race it: 100 m slalom'));
+        var lane = el('div', 'b-lane'), gates = [];
+        [0.16, 0.33, 0.5, 0.67, 0.84].forEach(function(f){ var g = el('div', 'b-gate'); g.style.left = (f * 100) + '%'; lane.appendChild(g); gates.push({f:f, el:g}); });
+        var racer = el('div', 'b-racer'); racer.innerHTML = subSVG(sel); lane.appendChild(racer); race.appendChild(lane);
+        var rr = el('div', 'b-racerow'), tb = el('div'), tm = el('div', 'b-time', '0.0 s'), vd = el('div', 'b-verdict', 'Top speed ' + rc.top.toFixed(1) + ' m/s (game values, not real physics)');
+        tb.appendChild(tm); tb.appendChild(vd);
+        var go = el('button', 'g-btn', 'Run the course'); go.type = 'button';
+        rr.appendChild(tb); rr.appendChild(go); race.appendChild(rr); r.appendChild(race);
+        go.addEventListener('click', function(){
+          go.disabled = true; gates.forEach(function(g){ g.el.classList.remove('hit'); });
+          var dur = 5200, t0 = null, laneW = lane.clientWidth, maxX = Math.max(0, laneW - 130), wob = (100 - c.st) / 100 * 7;
+          function frame(ts){
+            if (t0 === null) t0 = ts;
+            var p = Math.min(1, (ts - t0) / dur);
+            racer.style.transform = 'translate(' + (p * maxX).toFixed(1) + 'px,' + (Math.sin(p * 18) * wob).toFixed(1) + 'px)';
+            tm.textContent = (p * rc.time).toFixed(1) + ' s';
+            gates.forEach(function(g){ if (p >= g.f) g.el.classList.add('hit'); });
+            if (p < 1) requestAnimationFrame(frame);
+            else {
+              var v = rc.time < 42 ? '🏆 Podium pace.' : rc.time < 55 ? '🧭 A solid heat.' : '⚓ Keep pedalling.';
+              vd.textContent = v + ' Top speed ' + rc.top.toFixed(1) + ' m/s (' + (rc.top * 3.6).toFixed(0) + ' km/h), simulated.';
+              go.textContent = 'Race again'; go.disabled = false;
+            }
+          }
+          requestAnimationFrame(frame);
+        });
+        var btns = el('div', 'g-btnrow');
+        var again = el('button', 'g-btn', 'Build another'); again.type = 'button'; again.addEventListener('click', begin);
+        var other = el('button', 'g-btn alt', 'Try another game'); other.type = 'button'; other.addEventListener('click', function(){ $('gOtherBtn').click(); });
+        btns.appendChild(again); btns.appendChild(other); r.appendChild(btns);
+        r.appendChild(el('p', 'b-hint', 'Numbers are simplified for fun. Real sub design is a lot of testing, which is what our team does.'));
+        panel.appendChild(r);
+        stage.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+      return {id:'build', panel:'build', title:'Build a sub', icon:'🛠️⚓🐟', idle:150000, blurb:'Pick a hull, propulsion, fins, nature-inspired upgrades and a pilot. See how fast and agile your sub turns out, then race it.', begin:begin};
+    })();
 
     /* ---------- wiring ---------- */
     $('gStartBtn').addEventListener('click', begin);
