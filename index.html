@@ -706,12 +706,16 @@
     .sponsor-row { gap: 30px; }
   }
 
-  /* ---------- GAME (Nature Built It First) ---------- */
+  /* ---------- GAMES ---------- */
   #game { background: var(--navy); color: #fff; }
   #game .eyebrow { color: var(--cyan); }
   #game .section-title { color: #fff; }
-  #game .g-intro { max-width: 620px; color: var(--text-dim); margin-top: 14px; font-size: 16px; }
-  .g-stage { position: relative; margin-top: 36px; background: var(--navy-deep); border: 1px solid rgba(255,255,255,0.1); border-radius: 22px; padding: 22px; min-height: 640px; overflow: hidden; }
+  #game .g-intro { max-width: 640px; color: var(--text-dim); margin-top: 14px; font-size: 16px; }
+  .g-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 30px; }
+  .g-tab { background: transparent; color: #dbe6ef; border: 1.5px solid rgba(255,255,255,0.25); border-radius: 999px; padding: 11px 20px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
+  .g-tab:hover { border-color: var(--cyan); }
+  .g-tab.on { background: var(--cyan); color: var(--navy-deep); border-color: var(--cyan); }
+  .g-stage { position: relative; margin-top: 18px; background: var(--navy-deep); border: 1px solid rgba(255,255,255,0.1); border-radius: 22px; padding: 22px; min-height: 660px; overflow: hidden; }
   .g-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
   .g-stats { display: flex; gap: 22px; font-size: 14px; color: var(--text-dim); }
   .g-stats b { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; color: #fff; margin-left: 6px; }
@@ -720,6 +724,7 @@
   .g-gauge svg { position: absolute; top: 5px; left: 0; height: 30px; width: auto; transition: left .6s ease; transform: translateX(4px); }
   .g-depth { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-weight: 600; font-size: 13px; color: var(--text-dim); }
   .g-board { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 18px; }
+  .g-board[hidden], #gChoicePanel[hidden] { display: none; }
   .g-col { display: flex; flex-direction: column; gap: 10px; }
   .g-col h3 { font-size: 18px; color: var(--cyan); letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 2px 4px; }
   .g-card { display: flex; align-items: center; gap: 14px; text-align: left; width: 100%; min-height: 78px; padding: 10px 14px; background: var(--teal); color: #fff; border: 2px solid rgba(255,255,255,0.14); border-radius: 16px; font-family: inherit; cursor: pointer; transition: transform .15s, border-color .15s, background .15s; }
@@ -733,6 +738,31 @@
   .g-card.done .g-t::after { content: " \2713"; color: var(--cyan); }
   .g-card.bad { border-color: #ff7a63; animation: gShake .4s; }
   @keyframes gShake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-6px)} 80%{transform:translateX(6px)} }
+
+  /* question games */
+  .g-q { display: flex; align-items: center; gap: 18px; background: var(--teal); border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 20px 22px; margin-bottom: 14px; }
+  .g-qi { font-size: 56px; line-height: 1; flex: none; }
+  .g-qt { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(24px, 4vw, 36px); line-height: 1.1; }
+  .g-qs { color: var(--text-dim); font-size: 15px; margin-top: 4px; }
+  .g-choices { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+  .g-choices.c1 { grid-template-columns: 1fr; }
+  .g-choices .g-card .g-t { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 17px; }
+  .g-choices.tall .g-card { min-height: 104px; justify-content: center; }
+  .g-choices.tall .g-card .g-t { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 32px; text-transform: uppercase; }
+  .g-choices.tall .g-card .g-ico { font-size: 44px; width: 56px; }
+  .g-choices.zones .g-card { min-height: 84px; }
+  .g-choices.zones .g-card .g-t { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 700; }
+  .g-card.z0 { background: #12597a; } .g-card.z1 { background: #0c3b52; } .g-card.z2 { background: #061f2d; }
+  .g-card.ok { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(79,209,232,0.4); }
+  .g-choices .g-card.ok .g-t::after { content: " \2713"; color: var(--cyan); }
+  .g-card.wrong { border-color: #ff7a63; box-shadow: 0 0 0 3px rgba(255,122,99,0.35); }
+  .g-card:disabled { cursor: default; }
+  .g-card:disabled:hover { border-color: rgba(255,255,255,0.14); }
+  .g-card.ok:disabled:hover { border-color: var(--cyan); }
+  .g-card.wrong:disabled:hover { border-color: #ff7a63; }
+  .g-nextrow { margin-top: 16px; display: flex; justify-content: flex-end; min-height: 56px; }
+  .g-nextrow[hidden] { display: none; }
+
   .g-fact { margin-top: 18px; min-height: 88px; background: var(--teal); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 14px 18px; display: flex; gap: 14px; align-items: center; }
   .g-fact.hint { border-color: rgba(79,209,232,0.5); }
   .g-fact .g-ico { font-size: 32px; }
@@ -744,8 +774,10 @@
   .g-sheet h3 { font-size: clamp(40px, 8vw, 68px); text-transform: uppercase; color: #fff; }
   .g-sheet p { margin: 0; color: var(--text-dim); font-size: 17px; max-width: 32em; }
   .g-bubbles { font-size: 44px; letter-spacing: 10px; }
+  .g-btnrow { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
   .g-btn { background: var(--cyan); color: var(--navy-deep); border: 0; border-radius: 999px; padding: 16px 38px; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 17px; cursor: pointer; transition: transform .2s, box-shadow .2s; }
   .g-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(79,209,232,0.35); }
+  .g-btn.alt { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.45); }
   .g-rank { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(36px, 7vw, 58px); text-transform: uppercase; color: var(--cyan); line-height: 1; margin: 0; }
   .g-big { display: flex; gap: 32px; justify-content: center; font-size: 14px; color: var(--text-dim); }
   .g-big b { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 42px; color: #fff; }
@@ -754,11 +786,16 @@
   @media (max-width: 640px) {
     .g-stage { padding: 14px; }
     .g-board { gap: 10px; }
-    .g-card { flex-direction: column; align-items: flex-start; gap: 6px; padding: 10px; }
-    .g-card .g-ico { font-size: 28px; width: auto; }
-    .g-card .g-t { font-size: 18px; }
-    .g-card .g-s { font-size: 12.5px; }
+    .g-board .g-card { flex-direction: column; align-items: flex-start; gap: 6px; padding: 10px; }
+    .g-board .g-card .g-ico { font-size: 28px; width: auto; }
+    .g-board .g-card .g-t { font-size: 18px; }
+    .g-board .g-card .g-s { font-size: 12.5px; }
     .g-stats { display: none; }
+    .g-choices { grid-template-columns: 1fr; }
+    .g-choices.tall { grid-template-columns: 1fr 1fr; }
+    .g-q { padding: 14px; gap: 12px; }
+    .g-qi { font-size: 42px; }
+    .g-tab { padding: 9px 14px; font-size: 13px; }
   }
   @media (prefers-reduced-motion: reduce) { .g-card, .g-water, .g-gauge svg { animation: none !important; transition: none !important; } }
 </style>
@@ -796,7 +833,7 @@
     <div class="hero-actions">
       <a href="#team" class="btn btn-solid">Meet the Team</a>
       <a href="#about" class="btn btn-ghost">Learn More</a>
-      <a href="#game" class="btn btn-ghost">Play the Game</a>
+      <a href="#game" class="btn btn-ghost">Play the Games</a>
     </div>
   </div>
   <div class="hero-flag">HSRW SUBMARINE TEAM <span>&middot; REBUILDING 2026</span></div>
@@ -838,18 +875,25 @@
 </div>
 
 
-<!-- ================= GAME ================= -->
+<!-- ================= GAMES ================= -->
 <section id="game">
   <div class="wrap">
     <span class="eyebrow">Play Along</span>
-    <h2 class="section-title">Nature Built It First</h2>
-    <p class="g-intro">Engineers, including submarine designers, have been copying sea life for decades. Match each animal to the technology it inspired.</p>
+    <h2 class="section-title">Dive Into the Games</h2>
+    <p class="g-intro">Four quick games about submarines, sea life and the physics of diving. Pick one and see how deep you can go.</p>
+
+    <div class="g-tabs" role="tablist" aria-label="Choose a game">
+      <button class="g-tab on" role="tab" aria-selected="true" data-g="match" type="button">🐋 Match it</button>
+      <button class="g-tab" role="tab" aria-selected="false" data-g="quiz" type="button">🧭 Sub quiz</button>
+      <button class="g-tab" role="tab" aria-selected="false" data-g="float" type="button">🫧 Sink or float</button>
+      <button class="g-tab" role="tab" aria-selected="false" data-g="zones" type="button">🌊 Depth zones</button>
+    </div>
 
     <div class="g-stage" id="gStage">
       <div class="g-top">
         <div class="g-stats" aria-live="polite">
-          <span>Matched<b id="gMatched">0/6</b></span>
-          <span>Oops<b id="gMiss">0</b></span>
+          <span><i id="gLA" style="font-style:normal">Matched</i><b id="gVA">0/6</b></span>
+          <span><i id="gLB" style="font-style:normal">Oops</i><b id="gVB">0</b></span>
         </div>
         <div class="g-gauge" role="img" aria-label="Dive progress">
           <div class="g-water" id="gWater"></div>
@@ -863,33 +907,34 @@
         </div>
       </div>
 
-      <div class="g-board">
+      <div class="g-board" id="gMatchPanel">
         <div class="g-col"><h3>Marine life</h3><div class="g-col" id="gLeft"></div></div>
         <div class="g-col"><h3>Technology it inspired</h3><div class="g-col" id="gRight"></div></div>
       </div>
+      <div id="gChoicePanel" hidden></div>
 
       <div class="g-fact hint" id="gFact" aria-live="polite"></div>
 
       <div class="g-screen" id="gStart">
         <div class="g-sheet">
-          <div class="g-bubbles" aria-hidden="true">&#x1F40B;&#x1F988;&#x1F419;</div>
-          <h3>Nature built it first</h3>
-          <p>Tap a sea creature, then the invention it inspired. Six matches and you reach the bottom.</p>
+          <div class="g-bubbles" aria-hidden="true" id="gStartIcon"></div>
+          <h3 id="gStartTitle"></h3>
+          <p id="gStartBlurb"></p>
           <button class="g-btn" id="gStartBtn" type="button">Dive in</button>
         </div>
       </div>
 
       <div class="g-screen" id="gEnd" hidden>
         <div class="g-sheet">
-          <div class="g-bubbles" aria-hidden="true" id="gEndIcon">&#x2693;</div>
-          <p class="g-rank" id="gRank">Chief Engineer</p>
-          <div class="g-big">
-            <span><b id="gEndMiss">0</b>wrong tries</span>
-            <span><b id="gEndTime">0s</b>total time</span>
-          </div>
+          <div class="g-bubbles" aria-hidden="true" id="gEndIcon"></div>
+          <p class="g-rank" id="gRank"></p>
+          <div class="g-big" id="gEndStats"></div>
           <p id="gEndMsg"></p>
           <div class="g-cta">Our submarine copies nature too. Ask us how we shape our hull, or follow us on Instagram @hsrw.submarine.</div>
-          <button class="g-btn" id="gAgainBtn" type="button">Play again</button>
+          <div class="g-btnrow">
+            <button class="g-btn" id="gAgainBtn" type="button">Play again</button>
+            <button class="g-btn alt" id="gOtherBtn" type="button">Try another game</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1132,27 +1177,23 @@
   }, { threshold: 0.5 });
   counters.forEach(el => counterIO.observe(el));
 
-  // ---------- Game: Nature Built It First ----------
+  // ---------- Games ----------
   (function(){
-    var PAIRS = [
-      {id:'whale', a:'Humpback whale', at:'Bumps along its flippers', ai:'\uD83D\uDC0B', t:'Wind turbine blades', td:'A bumpy edge keeps airflow smooth', ti:'\uD83C\uDF2C\uFE0F', f:'The bumps on humpback flippers help them turn tightly and efficiently. Engineers copied them for quieter, more efficient fan and turbine blades.'},
-      {id:'shark', a:'Shark', at:'Skin covered in tiny ridged scales', ai:'\uD83E\uDD88', t:'Low-drag swimsuits and hull coatings', td:'Tiny grooves reduce water friction', ti:'\uD83C\uDFCA', f:'Shark scales guide water along the body and cut drag. Their pattern inspired racing swimsuit fabrics and research into ship hull coatings.'},
-      {id:'boxfish', a:'Boxfish', at:'A boxy body that is surprisingly slippery', ai:'\uD83D\uDC21', t:'Low-drag concept car', td:'Boxy shape with very little air resistance', ti:'\uD83D\uDE97', f:'Mercedes-Benz built its 2005 Bionic concept car after the boxfish. Despite the boxy shape, water flows around the fish very smoothly.'},
-      {id:'kingfisher', a:'Kingfisher', at:'A slim beak that dives in with barely a splash', ai:'\uD83D\uDC26', t:'High-speed train nose', td:'A beak-shaped front cuts noise and drag', ti:'\uD83D\uDE84', f:"Japan's 500 Series Shinkansen was reshaped like a kingfisher beak to reduce the loud boom in tunnels and use less energy."},
-      {id:'octopus', a:'Octopus', at:'Soft body, arms that bend anywhere', ai:'\uD83D\uDC19', t:'Soft robotic arm', td:'A flexible gripper for delicate objects', ti:'\uD83E\uDDBE', f:'Octopus arms have no bones, so they can wrap around almost anything. Soft robots copy this to grab fragile things, even underwater.'},
-      {id:'mussel', a:'Mussel', at:'Sticks to rocks while waves crash on it', ai:'\uD83E\uDDAA', t:'Waterproof glue', td:'An adhesive that works when wet', ti:'\uD83E\uDE79', f:'Mussels make sticky protein threads that hold on in the surf. Scientists use them as a model for glues that work on wet surfaces.'},
-      {id:'fin', a:'Fish tail fin', at:'Bends toward a push, not away from it', ai:'\uD83D\uDC20', t:'Fin Ray gripper', td:'Soft fingers that wrap around objects', ti:'\uD83E\uDD16', f:'When you press on a fish fin, it curls around your finger. This "Fin Ray Effect" is used in soft robot grippers.'},
-      {id:'seal', a:'Harbor seal', at:"Whiskers that feel a fish's wake", ai:'\uD83E\uDDAD', t:'Underwater flow sensors', td:'Sensors that detect water movement for robots', ti:'\uD83D\uDCE1', f:'Seals can follow the water trail left by a fish seconds earlier. Researchers study their whiskers to build sensors for underwater vehicles.'},
-      {id:'nautilus', a:'Nautilus', at:'Shell chambers filled with gas and water', ai:'\uD83D\uDC1A', t:'Submarine ballast control', td:'Adjusts buoyancy to dive or rise', ti:'\u2693', f:'A nautilus changes the mix of gas and liquid in its shell to float or sink. Submarines use the same principle with ballast tanks. Ours does too.'},
-      {id:'remora', a:'Remora', at:'A sucker disc on its head clings to sharks', ai:'\uD83D\uDC1F', t:'Reversible suction pads', td:'Sticks to wet, curved surfaces then lets go', ti:'\uD83D\uDD18', f:'The remora grips big animals with a sucker on its head. Researchers made adhesive discs inspired by it that stick to wet skin and release again.'}
-    ];
-    var ROUND = 6, DEPTH_MAX = 600;
     var $ = function(id){ return document.getElementById(id); };
-    var left = $('gLeft'), right = $('gRight'), fact = $('gFact'), stage = $('gStage');
-    var state, idleTimer, endTimer;
+    var stage = $('gStage'), startEl = $('gStart'), endEl = $('gEnd'), fact = $('gFact');
+    var ORDER = ['match', 'quiz', 'float', 'zones'];
+    var games = {}, active = null, idleTimer, endTimer;
 
     function shuffle(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
 
+    function hud(la, va, lb, vb, p){
+      $('gLA').textContent = la; $('gVA').textContent = va;
+      $('gLB').textContent = lb; $('gVB').textContent = vb;
+      $('gWater').style.width = (p * 100) + '%';
+      var gw = $('gSub').parentNode.clientWidth - 90;
+      $('gSub').style.left = Math.max(0, p * gw) + 'px';
+      $('gDepth').textContent = Math.round(p * 600) + ' m';
+    }
     function setFact(icon, head, body, hint){
       fact.className = 'g-fact' + (hint ? ' hint' : '');
       fact.innerHTML = '<span class="g-ico"></span><p></p>';
@@ -1161,102 +1202,246 @@
       var h = document.createElement('span'); h.className = 'g-h'; h.textContent = head; p.appendChild(h);
       if (body) { p.appendChild(document.createElement('br')); p.appendChild(document.createTextNode(body)); }
     }
+    function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
 
-    function makeCard(pair, side){
-      var b = document.createElement('button');
-      b.type = 'button'; b.className = 'g-card'; b.dataset.id = pair.id; b.dataset.side = side;
-      var ico = document.createElement('span'); ico.className = 'g-ico'; ico.textContent = side === 'L' ? pair.ai : pair.ti; ico.setAttribute('aria-hidden', 'true');
-      var box = document.createElement('span');
-      var t = document.createElement('span'); t.className = 'g-t'; t.textContent = side === 'L' ? pair.a : pair.t;
-      var s = document.createElement('span'); s.className = 'g-s'; s.textContent = side === 'L' ? pair.at : pair.td;
-      box.appendChild(t); box.appendChild(s); b.appendChild(ico); b.appendChild(box);
-      b.addEventListener('click', function(){ pick(b); });
-      return b;
+    /* ---------- flow ---------- */
+    function showStart(){
+      clearTimeout(endTimer); clearTimeout(idleTimer);
+      $('gStartIcon').textContent = active.icon;
+      $('gStartTitle').textContent = active.title;
+      $('gStartBlurb').textContent = active.blurb;
+      endEl.hidden = true; startEl.hidden = false;
     }
-
-    function newRound(){
-      var set = shuffle(PAIRS).slice(0, ROUND);
-      state = {set:set, matched:0, miss:0, sel:null, start:Date.now(), streakMiss:0, busy:false};
-      left.innerHTML = ''; right.innerHTML = '';
-      shuffle(set).forEach(function(p){ left.appendChild(makeCard(p, 'L')); });
-      shuffle(set).forEach(function(p){ right.appendChild(makeCard(p, 'R')); });
-      updateHud();
-      setFact('\uD83E\uDEE7', 'Tap a sea creature, then the technology it inspired.', '', true);
-    }
-
-    function updateHud(){
-      $('gMatched').textContent = state.matched + '/' + ROUND;
-      $('gMiss').textContent = state.miss;
-      var pct = state.matched / ROUND;
-      $('gWater').style.width = (pct * 100) + '%';
-      var gw = $('gSub').parentNode.clientWidth - 90;
-      $('gSub').style.left = Math.max(0, pct * gw) + 'px';
-      $('gDepth').textContent = Math.round(pct * DEPTH_MAX) + ' m';
-    }
-
-    function clearSel(){ stage.querySelectorAll('.g-card.sel').forEach(function(c){ c.classList.remove('sel'); }); }
-
-    function pick(card){
-      if (state.busy || card.classList.contains('done')) return;
-      var side = card.dataset.side;
-      if (state.sel && state.sel.dataset.side === side) {
-        state.sel.classList.remove('sel');
-        if (state.sel === card) { state.sel = null; return; }
-      }
-      if (!state.sel || state.sel.dataset.side === side) { card.classList.add('sel'); state.sel = card; return; }
-      var first = state.sel, second = card;
-      state.sel = null; clearSel();
-      if (first.dataset.id === second.dataset.id) {
-        [first, second].forEach(function(c){ c.classList.add('done'); c.disabled = true; });
-        state.matched++; state.streakMiss = 0;
-        var p = state.set.filter(function(x){ return x.id === first.dataset.id; })[0];
-        setFact(p.ai, 'Match! ' + p.a + ' \u2192 ' + p.t, p.f, false);
-        updateHud();
-        if (state.matched === ROUND) setTimeout(showEnd, 2600);
-      } else {
-        state.miss++; state.streakMiss++; state.busy = true;
-        [first, second].forEach(function(c){ c.classList.add('bad'); });
-        setTimeout(function(){ [first, second].forEach(function(c){ c.classList.remove('bad'); }); state.busy = false; }, 450);
-        updateHud();
-        if (state.streakMiss >= 2) {
-          var lc = first.dataset.side === 'L' ? first : second;
-          var lp = state.set.filter(function(x){ return x.id === lc.dataset.id; })[0];
-          setFact('\uD83D\uDCA1', 'Hint: think about how "' + lp.at.toLowerCase() + '" could help a machine.', '', true);
-        } else {
-          setFact('\uD83E\uDD14', 'Not that one. Try another pair.', '', true);
-        }
-      }
-    }
-
-    function showEnd(){
-      var secs = Math.round((Date.now() - state.start) / 1000), m = state.miss, rank, icon, msg;
-      if (m <= 1) { rank = 'Chief Engineer'; icon = '\uD83C\uDFC6'; msg = 'Nearly perfect. You think like a bio-inspired designer.'; }
-      else if (m <= 4) { rank = 'Navigator'; icon = '\uD83E\uDDED'; msg = 'Nice work. You know your way around the deep.'; }
-      else { rank = 'Deckhand on the rise'; icon = '\u2693'; msg = 'Good dive. Play again and see how much you remember.'; }
-      $('gRank').textContent = rank; $('gEndIcon').textContent = icon; $('gEndMsg').textContent = msg;
-      $('gEndMiss').textContent = m; $('gEndTime').textContent = secs + 's';
-      $('gEnd').hidden = false;
-      clearTimeout(endTimer); endTimer = setTimeout(toStart, 40000);
-    }
-
-    function toStart(){ clearTimeout(endTimer); $('gEnd').hidden = true; $('gStart').hidden = false; }
-
     function begin(){
-      $('gStart').hidden = true; $('gEnd').hidden = true;
-      newRound(); resetIdle();
-      stage.scrollIntoView({behavior:'smooth', block:'start'});
+      startEl.hidden = true; endEl.hidden = true;
+      active.begin(); resetIdle();
+      stage.scrollIntoView({behavior: 'smooth', block: 'start'});
     }
-
+    function finish(res){
+      clearTimeout(idleTimer);
+      $('gRank').textContent = res.rank;
+      $('gEndIcon').textContent = res.icon;
+      $('gEndMsg').textContent = res.msg;
+      var box = $('gEndStats'); box.innerHTML = '';
+      res.stats.forEach(function(s){
+        var sp = document.createElement('span'); var b = document.createElement('b'); b.textContent = s[0];
+        sp.appendChild(b); sp.appendChild(document.createTextNode(s[1])); box.appendChild(sp);
+      });
+      endEl.hidden = false;
+      clearTimeout(endTimer); endTimer = setTimeout(showStart, 40000);
+    }
     function resetIdle(){
       clearTimeout(idleTimer);
-      idleTimer = setTimeout(function(){ if ($('gStart').hidden && $('gEnd').hidden) toStart(); }, 90000);
+      idleTimer = setTimeout(function(){ if (startEl.hidden && endEl.hidden) showStart(); }, 90000);
+    }
+    function activate(id){
+      active = games[id];
+      document.querySelectorAll('.g-tab').forEach(function(t){
+        var on = t.dataset.g === id; t.classList.toggle('on', on); t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      $('gMatchPanel').hidden = active.panel !== 'match';
+      $('gChoicePanel').hidden = active.panel !== 'choice';
+      showStart();
     }
 
+    /* ---------- game 1: match ---------- */
+    var PAIRS = [
+      {id:'whale', a:'Humpback whale', at:'Bumps along its flippers', ai:'🐋', t:'Wind turbine blades', td:'A bumpy edge keeps airflow smooth', ti:'🌬️', f:'The bumps on humpback flippers help them turn tightly and efficiently. Engineers copied them for quieter, more efficient fan and turbine blades.'},
+      {id:'shark', a:'Shark', at:'Skin covered in tiny ridged scales', ai:'🦈', t:'Low-drag swimsuits and hull coatings', td:'Tiny grooves reduce water friction', ti:'🏊', f:'Shark scales guide water along the body and cut drag. Their pattern inspired racing swimsuit fabrics and research into ship hull coatings.'},
+      {id:'boxfish', a:'Boxfish', at:'A boxy body that is surprisingly slippery', ai:'🐡', t:'Low-drag concept car', td:'Boxy shape with very little air resistance', ti:'🚗', f:'Mercedes-Benz built its 2005 Bionic concept car after the boxfish. Despite the boxy shape, water flows around the fish very smoothly.'},
+      {id:'kingfisher', a:'Kingfisher', at:'A slim beak that dives in with barely a splash', ai:'🐦', t:'High-speed train nose', td:'A beak-shaped front cuts noise and drag', ti:'🚄', f:"Japan's 500 Series Shinkansen was reshaped like a kingfisher beak to reduce the loud boom in tunnels and use less energy."},
+      {id:'octopus', a:'Octopus', at:'Soft body, arms that bend anywhere', ai:'🐙', t:'Soft robotic arm', td:'A flexible gripper for delicate objects', ti:'🦾', f:'Octopus arms have no bones, so they can wrap around almost anything. Soft robots copy this to grab fragile things, even underwater.'},
+      {id:'mussel', a:'Mussel', at:'Sticks to rocks while waves crash on it', ai:'🦪', t:'Waterproof glue', td:'An adhesive that works when wet', ti:'🩹', f:'Mussels make sticky protein threads that hold on in the surf. Scientists use them as a model for glues that work on wet surfaces.'},
+      {id:'fin', a:'Fish tail fin', at:'Bends toward a push, not away from it', ai:'🐠', t:'Fin Ray gripper', td:'Soft fingers that wrap around objects', ti:'🤖', f:'When you press on a fish fin, it curls around your finger. This "Fin Ray Effect" is used in soft robot grippers.'},
+      {id:'seal', a:'Harbor seal', at:"Whiskers that feel a fish's wake", ai:'🦭', t:'Underwater flow sensors', td:'Sensors that detect water movement for robots', ti:'📡', f:'Seals can follow the water trail left by a fish seconds earlier. Researchers study their whiskers to build sensors for underwater vehicles.'},
+      {id:'nautilus', a:'Nautilus', at:'Shell chambers filled with gas and water', ai:'🐚', t:'Submarine ballast control', td:'Adjusts buoyancy to dive or rise', ti:'⚓', f:'A nautilus changes the mix of gas and liquid in its shell to float or sink. Submarines use the same principle with ballast tanks. Ours does too.'},
+      {id:'remora', a:'Remora', at:'A sucker disc on its head clings to sharks', ai:'🐟', t:'Reversible suction pads', td:'Sticks to wet, curved surfaces then lets go', ti:'🔘', f:'The remora grips big animals with a sucker on its head. Researchers made adhesive discs inspired by it that stick to wet skin and release again.'}
+    ];
+    (function(){
+      var ROUND = 6, st, left = $('gLeft'), right = $('gRight');
+      function makeCard(pair, side){
+        var b = el('button', 'g-card'); b.type = 'button'; b.dataset.id = pair.id; b.dataset.side = side;
+        var ico = el('span', 'g-ico', side === 'L' ? pair.ai : pair.ti); ico.setAttribute('aria-hidden', 'true');
+        var box = el('span'); box.appendChild(el('span', 'g-t', side === 'L' ? pair.a : pair.t)); box.appendChild(el('span', 'g-s', side === 'L' ? pair.at : pair.td));
+        b.appendChild(ico); b.appendChild(box);
+        b.addEventListener('click', function(){ pick(b); });
+        return b;
+      }
+      function upd(){ hud('Matched', st.matched + '/' + ROUND, 'Oops', st.miss, st.matched / ROUND); }
+      function begin(){
+        var set = shuffle(PAIRS).slice(0, ROUND);
+        st = {set:set, matched:0, miss:0, sel:null, start:Date.now(), streakMiss:0, busy:false};
+        left.innerHTML = ''; right.innerHTML = '';
+        shuffle(set).forEach(function(p){ left.appendChild(makeCard(p, 'L')); });
+        shuffle(set).forEach(function(p){ right.appendChild(makeCard(p, 'R')); });
+        upd(); setFact('🫧', 'Tap a sea creature, then the technology it inspired.', '', true);
+      }
+      function clearSel(){ stage.querySelectorAll('.g-card.sel').forEach(function(c){ c.classList.remove('sel'); }); }
+      function pick(card){
+        if (st.busy || card.classList.contains('done')) return;
+        var side = card.dataset.side;
+        if (st.sel && st.sel.dataset.side === side) { st.sel.classList.remove('sel'); if (st.sel === card) { st.sel = null; return; } }
+        if (!st.sel || st.sel.dataset.side === side) { card.classList.add('sel'); st.sel = card; return; }
+        var first = st.sel, second = card; st.sel = null; clearSel();
+        if (first.dataset.id === second.dataset.id) {
+          [first, second].forEach(function(c){ c.classList.add('done'); c.disabled = true; });
+          st.matched++; st.streakMiss = 0;
+          var p = st.set.filter(function(x){ return x.id === first.dataset.id; })[0];
+          setFact(p.ai, 'Match! ' + p.a + ' → ' + p.t, p.f, false);
+          upd();
+          if (st.matched === ROUND) setTimeout(end, 2600);
+        } else {
+          st.miss++; st.streakMiss++; st.busy = true;
+          [first, second].forEach(function(c){ c.classList.add('bad'); });
+          setTimeout(function(){ [first, second].forEach(function(c){ c.classList.remove('bad'); }); st.busy = false; }, 450);
+          upd();
+          if (st.streakMiss >= 2) {
+            var lc = first.dataset.side === 'L' ? first : second;
+            var lp = st.set.filter(function(x){ return x.id === lc.dataset.id; })[0];
+            setFact('💡', 'Hint: think about how "' + lp.at.toLowerCase() + '" could help a machine.', '', true);
+          } else setFact('🤔', 'Not that one. Try another pair.', '', true);
+        }
+      }
+      function end(){
+        var secs = Math.round((Date.now() - st.start) / 1000), m = st.miss, r;
+        if (m <= 1) r = ['Chief Engineer', '🏆', 'Nearly perfect. You think like a bio-inspired designer.'];
+        else if (m <= 4) r = ['Navigator', '🧭', 'Nice work. You know your way around the deep.'];
+        else r = ['Deckhand on the rise', '⚓', 'Good dive. Play again and see how much you remember.'];
+        finish({rank:r[0], icon:r[1], msg:r[2], stats:[[m, 'wrong tries'], [secs + 's', 'total time']]});
+      }
+      games.match = {id:'match', panel:'match', title:'Match it', icon:'🐋🦈🐙', blurb:'Tap a sea creature, then the invention it inspired. Six matches and you reach the bottom.', begin:begin};
+    })();
+
+    /* ---------- question games (quiz, sink or float, depth zones) ---------- */
+    function choiceGame(cfg){
+      var st, panel = $('gChoicePanel');
+      function upd(){
+        var answered = st.i + (st.locked ? 1 : 0);
+        var b = cfg.statB === 'streak' ? ['Best streak', st.best] : ['Question', Math.min(st.i + 1, cfg.count) + '/' + cfg.count];
+        hud('Score', st.score + '/' + cfg.count, b[0], b[1], answered / cfg.count);
+      }
+      function begin(){
+        st = {order: shuffle(cfg.items).slice(0, cfg.count), i:0, score:0, streak:0, best:0, locked:false, start:Date.now()};
+        render();
+      }
+      function render(){
+        var it = st.order[st.i]; st.locked = false;
+        panel.innerHTML = '';
+        var q = el('div', 'g-q');
+        q.appendChild(el('div', 'g-qi', it.icon || '❓')).setAttribute('aria-hidden', 'true');
+        var qb = el('div'); qb.appendChild(el('div', 'g-qt', it.q)); if (it.sub || cfg.sub) qb.appendChild(el('div', 'g-qs', it.sub || cfg.sub));
+        q.appendChild(qb); panel.appendChild(q);
+        var opts = it.o.map(function(o, idx){ o = typeof o === 'string' ? {t:o} : o; return {t:o.t, s:o.s || '', i:o.i || '', idx:idx, right: idx === it.a}; });
+        if (!cfg.fixed) opts = shuffle(opts);
+        var wrap = el('div', 'g-choices ' + cfg.cls); var btns = [];
+        opts.forEach(function(o){
+          var b = el('button', 'g-card' + (cfg.zoneTint ? ' z' + o.idx : '')); b.type = 'button'; b._o = o;
+          if (o.i) { var ic = el('span', 'g-ico', o.i); ic.setAttribute('aria-hidden', 'true'); b.appendChild(ic); }
+          var bx = el('span'); bx.appendChild(el('span', 'g-t', o.t)); if (o.s) bx.appendChild(el('span', 'g-s', o.s)); b.appendChild(bx);
+          b.addEventListener('click', function(){ answer(b, o, btns, it, nextRow, nextBtn); });
+          btns.push(b); wrap.appendChild(b);
+        });
+        panel.appendChild(wrap);
+        var nextRow = el('div', 'g-nextrow'); nextRow.hidden = true;
+        var nextBtn = el('button', 'g-btn', st.i + 1 < cfg.count ? 'Next' : 'See results'); nextBtn.type = 'button';
+        nextBtn.addEventListener('click', function(){ st.i++; if (st.i >= cfg.count) end(); else render(); resetIdle(); });
+        nextRow.appendChild(nextBtn); panel.appendChild(nextRow);
+        setFact(cfg.factIcon, cfg.prompt, '', true); upd();
+      }
+      function answer(btn, o, btns, it, nextRow, nextBtn){
+        if (st.locked) return; st.locked = true;
+        var right = btns.filter(function(b){ return b._o.right; })[0];
+        btns.forEach(function(b){ b.disabled = true; });
+        right.classList.add('ok');
+        if (o.right) { st.score++; st.streak++; st.best = Math.max(st.best, st.streak); }
+        else { st.streak = 0; btn.classList.add('wrong'); }
+        setFact(o.right ? '✅' : '❌', o.right ? 'Correct!' : 'Not quite. The answer is ' + right._o.t + '.', it.f, false);
+        nextRow.hidden = false; nextBtn.focus({preventScroll:true}); upd();
+      }
+      function end(){
+        var frac = st.score / cfg.count, secs = Math.round((Date.now() - st.start) / 1000), r = cfg.ranks[cfg.ranks.length - 1];
+        for (var k = 0; k < cfg.ranks.length; k++) { if (frac >= cfg.ranks[k][0]) { r = cfg.ranks[k]; break; } }
+        hud('Score', st.score + '/' + cfg.count, cfg.statB === 'streak' ? 'Best streak' : 'Question', cfg.statB === 'streak' ? st.best : cfg.count + '/' + cfg.count, 1);
+        finish({rank:r[1], icon:r[2], msg:r[3], stats:[[st.score + '/' + cfg.count, 'correct'], [secs + 's', 'total time']]});
+      }
+      return {id:cfg.id, panel:'choice', title:cfg.title, icon:cfg.bubbles, blurb:cfg.blurb, begin:begin};
+    }
+
+    games.quiz = choiceGame({
+      id:'quiz', title:'Sub quiz', bubbles:'🧭⚓🔦', blurb:'Six quick questions on submarines, pressure and the deep. Tap an answer to see why.',
+      count:6, cls:'c2', prompt:'Pick the best answer.', factIcon:'🫧', fixed:false,
+      ranks:[[0.83,'Captain','🏆','Top marks. You really know your submarines.'],[0.5,'First Mate','🧭','Solid. Ask us about the ones you missed.'],[0,'Deckhand on the rise','⚓','Good start. Play again and dive deeper.']],
+      items:[
+        {q:'What do ballast tanks do on a submarine?', icon:'⚓', o:['Store food and supplies','Change its weight so it can dive or surface','Power the propeller','Cool the motor'], a:1, f:'Flooding the tanks with water makes the sub heavier so it sinks. Pushing the water out with air makes it rise again.'},
+        {q:'How much does pressure rise for every 10 m you dive in seawater?', icon:'📈', o:['It stays the same','About one extra atmosphere','About ten extra atmospheres','It doubles each time'], a:1, f:'At 10 m the pressure is already twice what we feel at the surface. At 100 m it is about 11 times.'},
+        {q:'Which colour of light disappears first as you go deeper?', icon:'🔦', o:['Blue','Green','Red','Yellow'], a:2, f:'Water absorbs red light within the first few metres, which is why deep photos look blue-green without a flashlight.'},
+        {q:'About how much faster does sound travel in water than in air?', icon:'🔊', o:['About the same','About 2 times','About 4 times','About 40 times'], a:2, f:'Roughly 1,500 m/s in seawater against 340 m/s in air. That is why submarines rely on sonar more than their eyes.'},
+        {q:'What turns the propeller on a human-powered submarine?', icon:'🚴', o:['A small diesel engine','The pilot, with legs or arms','A sail','A wind turbine'], a:1, f:'The pilot pedals or cranks, so every bit of drag removed from the hull makes the sub faster. That is why shape matters so much.'},
+        {q:'Why are submarines shaped like a long teardrop?', icon:'💧', o:['It looks cool','It reduces drag','It holds more air','It is easier to paint'], a:1, f:'A smooth, streamlined shape lets water flow around the hull with less resistance, so less power is needed to move.'},
+        {q:'What is the deepest known point in the ocean?', icon:'🌊', o:['Challenger Deep','Bermuda Triangle','Great Blue Hole','Gulf of Mexico'], a:0, f:'Challenger Deep, in the Mariana Trench, is about 10,900 m down. Mount Everest would fit inside with roughly 2 km of water above it.'},
+        {q:'Who is credited with building one of the first working submarines, around 1620?', icon:'🕰️', o:['Leonardo da Vinci','Cornelis Drebbel','Jules Verne','Isaac Newton'], a:1, f:'Drebbel\'s rowed boat was tested in the River Thames in London, with the oars passing through leather seals.'},
+        {q:'What does sonar use to detect objects?', icon:'📡', o:['Radio waves','Sound pulses','Lasers','Magnets'], a:1, f:'A ping goes out and the echo comes back. The delay tells you how far away the object is.'},
+        {q:'What is a "wet" submarine?', icon:'🤿', o:['One that leaks by accident','A flooded hull where the pilot wears breathing gear','One that only runs in rain','A sub with no propeller'], a:1, f:'In many human-powered sub races, the hull fills with water and the pilot breathes from scuba equipment. Dry subs keep the pilot in air.'}
+      ]
+    });
+
+    games.float = choiceGame({
+      id:'float', title:'Sink or float', bubbles:'🫧🚢🧊', blurb:'Eight objects, one question: does it sink or float? Submarines play with exactly this idea.',
+      count:8, cls:'c2 tall', prompt:'Will it sink or float in water?', factIcon:'🫧', fixed:true, statB:'streak',
+      ranks:[[0.87,'Buoyancy Master','🏆','Nearly perfect. You could trim a submarine.'],[0.6,'Steady Swimmer','🧭','Nice. A couple of surprises caught you out.'],[0,'Ballast Beginner','⚓','Good try. Density is sneaky. Play again.']],
+      items:[
+        {q:'Steel nail', icon:'🔩', o:[{t:'Sinks', i:'⬇️'}, {t:'Floats', i:'⬆️'}], a:0, f:'Steel is about eight times denser than water, so a solid piece sinks.'},
+        {q:'Huge steel cargo ship', icon:'🚢', o:[{t:'Sinks', i:'⬇️'}, {t:'Floats', i:'⬆️'}], a:1, f:'Its hull is mostly air, so the ship as a whole weighs less than the water it pushes aside.'},
+        {q:'Ice cube', icon:'🧊', o:[{t:'Sinks', i:'⬇️'}, {t:'Floats', i:'⬆️'}], a:1, f:'Water expands when it freezes, so ice is about 9% less dense than liquid water.'},
+        {q:'Apple', icon:'🍎', o:[{t:'Sinks', i:'⬇️'}, {t:'Floats', i:'⬆️'}], a:1, f:'Roughly a quarter of an apple is air, which makes it lighter than the same volume of water.'},
+        {q:'Grape', icon:'🍇', o:[{t:'Sinks', i:'⬇️'}, {t:'Floats', i:'⬆️'}], a:0, f:'Grapes are slightly denser than water, so they sink.'},
+        {q:'Orange, with its peel on', icon:'🍊', o:[{t:'Sinks', i:'⬇️'}, {t:'Floats', i:'⬆️'}], a:1, f:'The peel is full of tiny air pockets. Peel the orange and it sinks.'},
+        {q:'Coin', icon:'🪙', o:[{t:'Sinks', i:'⬇️'}, {t:'Floats', i:'⬆️'}], a:0, f:'Metal is many times denser than water, and a coin has no air inside to help.'},
+        {q:'Submarine with ballast tanks full of air', icon:'⚓', o:[{t:'Sinks', i:'⬇️'}, {t:'Floats', i:'⬆️'}], a:1, f:'Air in the tanks keeps the whole sub lighter than the water it displaces. Flood the tanks to dive.'},
+        {q:'Submarine with ballast tanks full of water', icon:'⚓', o:[{t:'Sinks', i:'⬇️'}, {t:'Floats', i:'⬆️'}], a:0, f:'Taking on water makes the sub heavier than the water it displaces, so it dives. Pilots balance it carefully to hover.'},
+        {q:'Wooden log', icon:'🪵', o:[{t:'Sinks', i:'⬇️'}, {t:'Floats', i:'⬆️'}], a:1, f:'Most wood is less dense than water, and trapped air helps too.'},
+        {q:'Fresh egg in tap water', icon:'🥚', o:[{t:'Sinks', i:'⬇️'}, {t:'Floats', i:'⬆️'}], a:0, f:'A fresh egg sinks in fresh water. Stir in enough salt and it floats, like swimmers in the Dead Sea.'},
+        {q:'Empty plastic bottle, cap on', icon:'🧴', o:[{t:'Sinks', i:'⬇️'}, {t:'Floats', i:'⬆️'}], a:1, f:'It is mostly air, so it floats. Add enough weight and it will sink.'}
+      ]
+    });
+
+    games.zones = choiceGame({
+      id:'zones', title:'Depth zones', bubbles:'☀️🌗🌑', blurb:'The ocean has layers, and each has its own residents. Where does each animal live?',
+      count:6, cls:'c1 zones', sub:'Which depth zone does it live in?', prompt:'Pick the zone. Sunlight gets dimmer the deeper you go.', factIcon:'🌊', fixed:true, zoneTint:true,
+      ranks:[[0.83,'Deep Sea Explorer','🏆','Brilliant. You could guide a research dive.'],[0.5,'Reef Diver','🧭','Good. Some deep residents surprised you.'],[0,'Snorkeller','⚓','You stayed near the surface. Dive again.']],
+      items:[
+        {q:'Clownfish', icon:'🐠', o:[{t:'Sunlight zone', s:'0–200 m', i:'☀️'}, {t:'Twilight zone', s:'200–1,000 m', i:'🌗'}, {t:'Midnight zone', s:'Below 1,000 m', i:'🌑'}], a:0, f:'Clownfish live on shallow coral reefs where the sunlight is strong, usually in the top 15 m.'},
+        {q:'Bottlenose dolphin', icon:'🐬', o:[{t:'Sunlight zone', s:'0–200 m', i:'☀️'}, {t:'Twilight zone', s:'200–1,000 m', i:'🌗'}, {t:'Midnight zone', s:'Below 1,000 m', i:'🌑'}], a:0, f:'Dolphins hunt mostly in the upper waters and come up to the surface to breathe.'},
+        {q:'Blacktip reef shark', icon:'🦈', o:[{t:'Sunlight zone', s:'0–200 m', i:'☀️'}, {t:'Twilight zone', s:'200–1,000 m', i:'🌗'}, {t:'Midnight zone', s:'Below 1,000 m', i:'🌑'}], a:0, f:'This shark patrols shallow reefs, sometimes in water barely deeper than its own body.'},
+        {q:'Lanternfish', icon:'🐟', o:[{t:'Sunlight zone', s:'0–200 m', i:'☀️'}, {t:'Twilight zone', s:'200–1,000 m', i:'🌗'}, {t:'Midnight zone', s:'Below 1,000 m', i:'🌑'}], a:1, f:'Lanternfish spend the day in the twilight zone and swim up at night to feed, one of the biggest daily migrations on Earth.'},
+        {q:'Hatchetfish', icon:'🐟', o:[{t:'Sunlight zone', s:'0–200 m', i:'☀️'}, {t:'Twilight zone', s:'200–1,000 m', i:'🌗'}, {t:'Midnight zone', s:'Below 1,000 m', i:'🌑'}], a:1, f:'Hatchetfish glow on their undersides so predators looking up cannot see their silhouette.'},
+        {q:'Giant squid', icon:'🦑', o:[{t:'Sunlight zone', s:'0–200 m', i:'☀️'}, {t:'Twilight zone', s:'200–1,000 m', i:'🌗'}, {t:'Midnight zone', s:'Below 1,000 m', i:'🌑'}], a:1, f:'Giant squid are thought to live roughly 300 to 1,000 m down, in the twilight zone.'},
+        {q:'Deep-sea anglerfish', icon:'🎣', o:[{t:'Sunlight zone', s:'0–200 m', i:'☀️'}, {t:'Twilight zone', s:'200–1,000 m', i:'🌗'}, {t:'Midnight zone', s:'Below 1,000 m', i:'🌑'}], a:2, f:'In near-total darkness, anglerfish dangle a glowing lure to attract prey.'},
+        {q:'Dumbo octopus', icon:'🐙', o:[{t:'Sunlight zone', s:'0–200 m', i:'☀️'}, {t:'Twilight zone', s:'200–1,000 m', i:'🌗'}, {t:'Midnight zone', s:'Below 1,000 m', i:'🌑'}], a:2, f:'Dumbo octopuses flap ear-like fins and live thousands of metres down.'},
+        {q:'Giant tube worm', icon:'🪱', o:[{t:'Sunlight zone', s:'0–200 m', i:'☀️'}, {t:'Twilight zone', s:'200–1,000 m', i:'🌗'}, {t:'Midnight zone', s:'Below 1,000 m', i:'🌑'}], a:2, f:'Giant tube worms cluster around hot vents on the seafloor, where no sunlight reaches at all.'}
+      ]
+    });
+
+    /* ---------- wiring ---------- */
     $('gStartBtn').addEventListener('click', begin);
     $('gAgainBtn').addEventListener('click', begin);
+    $('gOtherBtn').addEventListener('click', function(){
+      var next = ORDER[(ORDER.indexOf(active.id) + 1) % ORDER.length];
+      activate(next); history.replaceState(null, '', '#game-' + next);
+    });
+    document.querySelectorAll('.g-tab').forEach(function(t){
+      t.addEventListener('click', function(){ activate(t.dataset.g); history.replaceState(null, '', '#game-' + t.dataset.g); });
+    });
     stage.addEventListener('pointerdown', resetIdle);
-    window.addEventListener('resize', function(){ if (state) updateHud(); });
-    newRound();
+    window.addEventListener('resize', function(){ if (active && startEl.hidden && endEl.hidden && stage.querySelector('.g-card')) { /* keep sub position in sync */ var p = parseFloat($('gWater').style.width) / 100 || 0; var gw = $('gSub').parentNode.clientWidth - 90; $('gSub').style.left = Math.max(0, p * gw) + 'px'; } });
+
+    function fromHash(){
+      var m = /^#game-(\w+)/.exec(location.hash);
+      if (m && games[m[1]]) { activate(m[1]); $('game').scrollIntoView(); return true; }
+      return false;
+    }
+    window.addEventListener('hashchange', fromHash);
+    if (!fromHash()) activate('match');
   })();
 </script>
 
